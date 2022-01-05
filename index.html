@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ca" class="h-100">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mario Moreno Capón - Pràctica per Visualització de Dades - Graduat Multimèdia - UOC</title>
+    <link rel="icon" type="image/png" href="img/icons8-bar-chart-96.png" />
+
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/estils.css" rel="stylesheet">
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/d3.v7.min.js"></script>
+    <link rel="stylesheet" href="css/estils.css">
+</head>
+
+<body class="h-100">
+    <div class="wrapper d-flex flex-column h-100">
+        <header>
+            <!-- Fixed navbar -->
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark altura-capcalera-i-peu">
+                <div class="container">
+                    <a class="navbar-brand" href="#" data-bs-toggle="modal" data-bs-target="#sobreModal">El TOP 99 de
+                        videojocs de STEAM <small class="text-muted">(8 novembre de
+                            2021)</small></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+                            <li class="nav-item">
+                                <a class="nav-link active" href="#" onclick="mostrar('jugadors', this)">Jugadors</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="mostrar('antiguitat', this)">Antiguitat</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="mostrar('ressenyes', this)">Ressenyes</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#" onclick="mostrar('nom', this)">Nom</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"
+                                    onclick="mostrar('ressenyes_per_mes', this)">Ressenyes/mes</a>
+                            </li>
+                            <li class="nav-item">
+                                <div class="nav-link ms-5 form-check form-switch">
+                                    <input class="form-check-input" type="checkbox" id="mostrar_dades_filtrades" data-bs-toggle="tooltip" 
+                                    data-bs-placement="bottom" data-bs-html="true"
+                                    title="Mostrar només <br> els jocs seleccionats">
+                                    <label class="form-check-label text-light"
+                                        for="mostrar_dades_filtrades">Filtrar</label>
+                                </div>
+                            </li>
+                            <li id="restaurar-filtre" class="nav-item">
+                                <button class="btn btn-dark" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                                    title="Esborrar la selecció" onclick="restaurarFiltres()">
+                                    <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="0.8em" height="0.8em"
+                                        viewBox="0 0 24 24" style=" fill:#FFF;">
+                                        <path
+                                            d="M 2 2 L 4.9394531 4.9394531 C 3.1262684 6.7482143 2 9.2427079 2 12 C 2 17.514 6.486 22 12 22 C 17.514 22 22 17.514 22 12 C 22 6.486 17.514 2 12 2 L 12 4 C 16.411 4 20 7.589 20 12 C 20 16.411 16.411 20 12 20 C 7.589 20 4 16.411 4 12 C 4 9.7940092 4.9004767 7.7972757 6.3496094 6.3496094 L 9 9 L 9 2 L 2 2 z">
+                                        </path>
+                                    </svg>
+                                </button>
+                                </svg>
+                            </li>
+                        </ul>
+                        <div class="navbar-text">
+                            <a href="#" id="boto-mostrar-fitxa" data-bs-toggle="tooltip" data-bs-placement="bottom"
+                            title="Mostrar targeta de dades" onclick="mostrarFitxa();">
+                            <svg id="icona-mostrar-fitxa" xmlns=" http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor"
+                                class="bi bi-card-heading text-secondary" viewBox="0 0 20 20">
+                                <path
+                                    d="M14.5 3a.5.5 0 0 1 .5.5v9a.5.5 0 0 1-.5.5h-13a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h13zm-13-1A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h13a1.5 1.5 0 0 0 1.5-1.5v-9A1.5 1.5 0 0 0 14.5 2h-13z" />
+                                <path
+                                    d="M3 8.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0 2a.5.5 0 0 1 .5-.5h6a.5.5 0 0 1 0 1h-6a.5.5 0 0 1-.5-.5zm0-5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-9a.5.5 0 0 1-.5-.5v-1z" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- principal -->
+        <main class="content flex-grow-1 overflow-auto">
+            <div class="container">
+                <div id="dataviz"></div>
+                <div class="card shadow" style="width: 230px; opacity: 1;">
+                    <img src="img/jocs/730.jpg" class="card-img-top">
+                    <div class="card-body">
+                        <h5 class="card-title">Counter-Strike: Global Offensive</h5>
+                        <p class="card-text">
+                        </p>
+                        <div id="dades">
+                            <p>SteamID:&emsp;<strong>730</strong></p>
+                            <p>Current players:&emsp;<strong>736.875</strong></p>
+                            <p>Peak players today:&emsp;<strong>775.266</strong></p>
+                            <p>Release date:&emsp;<strong>21/08/2012</strong></p>
+                            <p>Review summary:<br><strong>Very Positive</strong></p>
+                            <p>Total reviews:&emsp;<strong>5.993.058</strong></p>
+                            <br>
+                            <p class="tags"><span>Action</span> <span>Co-op</span> <span>Competitive</span>
+                                <span>Difficult</span> <span>FPS</span> <span>Fast-Paced</span>
+                                <span>First-Person</span> <span>Military</span> <span>Moddable</span>
+                                <span>Multiplayer</span> <span>Online Co-Op</span> <span>PvP</span>
+                                <span>Realistic</span> <span>Shooter</span> <span>Strategy</span> <span>Tactical</span>
+                                <span>Team-Based</span> <span>Trading</span> <span>War</span> <span>eSports</span>
+                            </p>
+                        </div>
+                        <a id="enllac-plana-joc-steam" href="https://store.steampowered.com/app/730/"
+                        class="btn btn-secondary btn-sm mt-2" target="joc-steam">Enllaç a Steam</a>
+                        <!-- <a href="#" class="btn btn-secondary btn-sm mt-2" onclick="mostrarFitxa()">Amagar</a> -->
+                        <button type="button" class="btn-close" onclick="mostrarFitxa()"></button>
+                        <p></p>
+                    </div>
+                </div>
+                <script type="text/javascript" src="js/codi.js"></script>
+            </div>
+
+
+        </main>
+        <footer class="footer mt-auto bg-dark altura-capcalera-i-peu">
+            <div class="container">
+                <span class="text-light">Font: <a href="https://zenodo.org/record/5655273#.YakTgNDMKUk"
+                        class="link-secondary">Top 100 most played Steam games - Zenodo</a> | <a href="#"
+                        data-bs-toggle="modal" data-bs-target="#sobreModal">Més informació</a>
+                </span>
+            </div>
+        </footer>
+
+    </div> <!-- wrapper -->
+
+    <!-- Modal -->
+    <div class="modal fade" id="sobreModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="About">Sobre aquesta pràctica</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>
+                        Mario Moreno Capón <br>
+                        Pràctica per Visualització de Dades <br>
+                        Grau Multimèdia. UOC. <br>
+                        Desembre 2021. <br>
+                        Atribució de les dades: David Fernández Martínez <br>
+                        Font: <a href="https://zenodo.org/record/5655273#.YbOiTL2ZOUm"
+                            target="dades">https://zenodo.org/record/5655273#.YbOiTL2ZOUm</a> <br>
+                        Sota llicència CC Attribution 4.0 International <br>
+                        Nota: En les dades originals, el joc Spacewar apareix sense dades. Per això aquesta
+                        visualització només mostra 99 jocs.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Acceptar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="calseleccionarelementsperfiltrar" tabindex="-2">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Avís</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>Cal seleccionar algun joc.</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tancar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

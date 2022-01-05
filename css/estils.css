@@ -1,0 +1,187 @@
+body {
+  background-color: #1b2838;
+}
+
+#dataviz {
+  overflow: auto;
+  /* background-color: #ffffff; */
+}
+
+
+#wrapper {
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: 1;
+  overflow: auto;
+}
+
+rect {
+  fill: steelblue;
+  /* fill: rgb(101, 241, 46); */
+  fill-opacity: 0.8;
+  cursor: pointer;
+}
+
+rect:hover {
+  fill-opacity: 0.9;
+}
+
+#filtres rect {
+  fill: rgb(5, 27, 44);
+  fill-opacity: 0.8;
+  cursor: pointer;
+}
+
+
+.seleccionat {
+  fill: rgb(71, 191, 255);
+  fill-opacity: 1;
+}
+
+.axis {
+  font-size: 0.6em;
+  color: whitesmoke;
+  /* font-size: smaller; */
+}
+
+small {
+  font-size: 0.5em;
+}
+
+#dataviz path.domain {
+  display: none;
+}
+
+.y .tick line {
+  stroke: steelblue;
+}
+
+/* slider */
+
+svg {
+	font-family: sans-serif;
+}
+
+rect.overlay {
+	stroke: black;
+}
+
+rect.selection {
+	stroke: none;
+  fill: steelblue;
+  fill-opacity: 0.6;
+}
+
+.altura-capcalera-i-peu {
+  height: 32px;
+}
+
+.axis {
+  fill: whitesmoke;
+}
+
+#restaurar-filtre {
+  display: none;
+}
+
+/* Per que tinguin més superfície per poder fer clic. El que tenien valors molt petits no eren clicables sense stroke invisible */
+.barres {
+  stroke: pink;
+  stroke-width: 1px;
+  stroke-opacity: 0.0;  
+}
+.card {
+  position: absolute;
+  z-index: 9;
+  left: 70%;
+  top: 100px;
+  visibility: hidden;
+  cursor: move;
+  /* pointer-events: none; */
+}
+
+#dades p {
+  font-size: 8pt !important;
+  margin-bottom: 0 !important;
+  width: 100%;
+}
+
+.btn-close {
+  position: absolute;
+  right: 5px;
+  top: 5px;
+}
+
+/* Beautiful Tags For a Website Using Only CSS */
+/* http://dimox.net/beautiful-tags-for-a-website-using-only-css/ */
+
+.tags span {  
+  display: inline-block;  
+  height: 18px;  
+  margin: 0 10px 2px 0;  
+  padding: 0 5px 0 12px;  
+  white-space: nowrap;  
+  position: relative;  
+  
+  background: -moz-linear-gradient(top, #adc2cd 0%, #a2bbc8 100%);  
+  background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#adc2cd), color-stop(100%,#a2bbc8));  
+  background: -webkit-linear-gradient(top, #adc2cd 0%,#a2bbc8 100%);  
+  background: -o-linear-gradient(top, #adc2cd 0%,#a2bbc8 100%);  
+  background: linear-gradient(to bottom, #adc2cd 0%,#a2bbc8 100%);  
+  background-color: #98b3c1;  
+  
+  color: #4d6d7f;  
+  font: bold 9px/19px Arial, Tahoma, sans-serif;  
+  text-decoration: none;  
+  text-shadow: 0 1px rgba(255,255,255,0.4);  
+  
+  border-top: 1px solid #83a3b4;  
+  border-bottom: 1px solid #5f879d;  
+  border-right: 1px solid #6f94a8;  
+  border-radius: 1px 3px 3px 1px;  
+  box-shadow: inset 0 1px #bccdd6, 0 1px 2px rgba(0,0,0,0.21);  
+}
+
+.tags span:before { 
+  content: '';  
+  position: absolute;  
+  top: 3px;  
+  left: -5px;  
+  width: 9px;  
+  height: 9px;  
+  
+  background: -moz-linear-gradient(45deg, #adc2cd 0%, #a2bbc8 100%);  
+  background: -webkit-gradient(linear, left bottom, right top, color-stop(0%,#adc2cd), color-stop(100%,#a2bbc8));  
+  background: -webkit-linear-gradient(-45deg, #adc2cd 0%,#a2bbc8 100%);  
+  background: -o-linear-gradient(45deg, #adc2cd 0%,#a2bbc8 100%);  
+  background: linear-gradient(135deg, #adc2cd 0%,#a2bbc8 100%);  
+  background-color: #98b3c1;  
+  
+  border-left: 1px solid #83a3b4;  
+  border-bottom: 1px solid #5f879d;  
+  border-radius: 0 0 0 2px;  
+  box-shadow: inset 1px 0 #adc2cd, 0 2px 2px -2px rgba(0,0,0,0.33);  
+}
+
+.tags span:before { 
+  -webkit-transform: scale(1, 1.5) rotate(45deg);  
+  -moz-transform: scale(1, 1.5) rotate(45deg);  
+  -ms-transform: scale(1, 1.5) rotate(45deg);  
+  transform: scale(1, 1.5) rotate(45deg);  
+}
+
+.tags span:after { 
+  content: '';  
+  position: absolute;  
+  top: 5px;  
+  left: 1px;  
+  width: 5px;  
+  height: 5px;  
+  background: #FFF;  
+  border-radius: 4px;  
+  border: 1px solid #6f94a8;  
+  box-shadow: 0 1px 0 rgba(255,255,255,0.2), inset 0 1px 1px rgba(0,0,0,0.21);  
+}  
