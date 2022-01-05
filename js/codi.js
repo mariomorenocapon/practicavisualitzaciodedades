@@ -429,13 +429,19 @@ function canviarTextFitxa(e) {
     const _PeakPlayersToday = parseInt(dadesdeljoc.PeakPlayersToday).toLocaleString();
     const _TotalReviews = parseInt(dadesdeljoc.TotalReviews).toLocaleString();
     const _ressenyes_per_mes = dadesdeljoc.ressenyes_per_mes.toLocaleString();
+    let _resum_ressenyes;
+
+    if ('Very Positive' == dadesdeljoc.ReviewSummary) { _resum_ressenyes = "Molt positives" };
+    if ('Mostly Positive' == dadesdeljoc.ReviewSummary) { _resum_ressenyes = "Majorment positives" };
+    if ('Mixed' == dadesdeljoc.ReviewSummary) { _resum_ressenyes = "Mixtes" };
+    if ('Overwhelmingly Positive' == dadesdeljoc.ReviewSummary) { _resum_ressenyes = "Aclaparadorament positiu" };
 
     let markup = `
         <p>SteamID:&emsp;<strong>${dadesdeljoc.SteamId}</strong></p>
         <p>Jugadors actuals:&emsp;<strong>${_CurrentPlayers}</strong></p>
         <p>Jugadors màxims avui:&emsp;<strong>${_PeakPlayersToday}</strong></p>
         <p>Data de publicació:&emsp;<strong>${dadesdeljoc.ReleaseDate}</strong></p>
-        <p>Resum ressenya:<br><strong>${dadesdeljoc.ReviewSummary}</strong></p>
+        <p>Resum ressenyes:<br><strong>${_resum_ressenyes}</strong></p>
         <p>Ressenyes totals:&emsp;<strong>${_TotalReviews}</strong></p>
         <p>Ressenyes per mes <em>(calculat)</em>: <strong>${_ressenyes_per_mes}</strong></p>
         <br>
