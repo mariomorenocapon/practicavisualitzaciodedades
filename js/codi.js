@@ -7,7 +7,7 @@ let ordre_ascendent = { jugadors: true, antiguitat: false, ressenyes: true, nom:
 
 const margin = { top: 20, right: 60, bottom: 5, left: 220 };
 const width = document.getElementById("dataviz").offsetWidth - margin.left - margin.right;
-const height = 900 - margin.top - margin.bottom;
+const height = 865 - margin.top - margin.bottom;
 
 // Creates sources <svg> element
 const svg = d3.select("#dataviz").append("svg")
